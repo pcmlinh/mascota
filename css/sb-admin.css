@@ -21,9 +21,6 @@ h3{
   text-align: center;
   color: black;
 }
-a h3: hover{
-  color: black;
-}
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem; }

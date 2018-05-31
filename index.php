@@ -4,29 +4,7 @@ require 'database-config.php';
       <div class="card mb-3">
         <div class="card-header">
           My Pets<a href="#" class="btn btn-success pull-right" data-toggle="modal" id="addlinks"><span class="glyphicon glyphicon-plus"></span>Add new pet</a></div>
-        <div class="card-body">
-          <?php 
-          $sql = "SELECT * FROM pet";
-
-          $result = mysqli_query($conn, $sql);
-          if (!$result) {
-            die("Can't query date. Error occure".mysqli_error($conn));
-          }
-          if (mysqli_num_rows($result) > 0) {
-
-           while($row = mysqli_fetch_assoc($result)) {
-            echo '<a class="pet-link" href="detail.php?id='.$row["id"].'">';
-            echo '<div class="product-container">';
-            echo '<img class="img-responsive" id="thumbnail" src="'.$row["image"].'">';
-            echo '<h3>'.$row["name"].'</h3>';
-            echo '</div>';
-            echo '</a>';
-           }
-          }else {
-        echo "0 results";
-        }
-        mysqli_close($conn);
-        ?> 
+        <div class="card-body" id="petls">
         </div>
         <div class="card-footer small text-muted"></div>
         </div>
@@ -40,37 +18,19 @@ require 'database-config.php';
                     <div class="modal-content">
                         <div class="modal-header">
                             
-                            <h4 class="modal-title"><span class="glyphicon glyphicon-plus"></span> New Product</h4>
+                            <h4 class="modal-title"><span class="glyphicon glyphicon-plus"></span> New Pet</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             
                             
                             <div class="form-group">
-                                <label for="name">Product Name</label>
-                                <input type="text" class="form-control" name="product_name" id="name" required>
+                                <label for="name">Pet Name</label>
+                                <input type="text" class="form-control" name="pet_name" id="name" required>
                             </div>
                             <div class="form-group">
-                                <label for="brand_id">Brand</label>
-                                <select name="brand_id" id="brand" class="form-control">
-                                    
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="price">Price</label>
-                                <input type="text" class="form-control" name="price" id="price" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="volume">Volume</label>
-                                <input type="text" class="form-control" name="volume" id="volume" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="alcohol">Alcohol</label>
-                                <input type="text" class="form-control" name="alcohol" id="alcohol" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" name="description"></textarea>
+                                <label for="bio">Bio</label>
+                                <textarea class="form-control" name="bio"></textarea>
                             <div class="form-group">
                                 <label for="">Image</label>
                                 <input type="file" name="fileToUpload" id="fileToUpload">
@@ -100,7 +60,7 @@ require 'database-config.php';
                     <div class="modal-content">
                         <div class="modal-header">
                             
-                            <h4 class="modal-title">Update Product</h4>
+                            <h4 class="modal-title">Edit Pet Information</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -108,31 +68,12 @@ require 'database-config.php';
                             
                             <div class="form-group">
                                 <input type="hidden" name="id" id="uid">
-                                <label for="name">Product Name</label>
+                                <label for="name">Name</label>
                                 <input type="text" class="form-control" name="product_name" id="uname" required>
                             </div>
                             <div class="form-group">
-                                <label for="brand_id">Brand</label><br>
-                                <select class="form-control" name="brand_id" id="ubrand">
-                                    
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="price">Price</label>
-                                <input type="text" class="form-control" name="price" id="uprice" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="volume">Volume</label>
-                                <input type="text" class="form-control" name="volume" id="uvolume" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="alcohol">Alcohol</label>
-                                <input type="text" class="form-control" name="alcohol" id="ualcohol" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" name="description" id="udescription"></textarea>
-                                
+                                <label for="description">Bio</label>
+                                <textarea class="form-control" name="description" id="udescription"></textarea>                               
                             </div>
                             <div class="form-group">
                               <label for="">Image</label>
@@ -145,7 +86,7 @@ require 'database-config.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" id="save-btn" style="width: 20%">Save</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      s      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </form>
