@@ -21,6 +21,9 @@ h3{
   text-align: center;
   color: black;
 }
+a h3: hover{
+  color: black;
+}
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem; }
@@ -34,6 +37,7 @@ h3{
 #thumbnail{
   width: 200px;
   height: 200px;
+  display: block;
   margin: 0 auto;
   border-radius: 50%;
 }

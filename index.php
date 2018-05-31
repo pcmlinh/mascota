@@ -5,37 +5,6 @@ require 'database-config.php';
         <div class="card-header">
           My Pets<a href="#" class="btn btn-success pull-right" data-toggle="modal" id="addlinks"><span class="glyphicon glyphicon-plus"></span>Add new pet</a></div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="product-table">
-              <thead>
-                <tr>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Brand ID</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Volume</th>
-                  <th>Alcohol</th>
-                  <th>Options</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Brand ID</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Volume</th>
-                  <th>Alcohol</th>
-                  <th>Options</th>
-                </tr>
-              </tfoot>
-              <tbody>
-
-              </tbody>
-            </table>
-          </div>
           <?php 
           $sql = "SELECT * FROM pet";
 
@@ -44,17 +13,14 @@ require 'database-config.php';
             die("Can't query date. Error occure".mysqli_error($conn));
           }
           if (mysqli_num_rows($result) > 0) {
-// output data of each row
 
            while($row = mysqli_fetch_assoc($result)) {
-            echo '<div class="col-lg-4 col-md-6 col-sm-9">';
             echo '<a class="pet-link" href="detail.php?id='.$row["id"].'">';
             echo '<div class="product-container">';
-            echo '<img class="img-responsive" id="thumbnail" align="center" src="'.$row["image"].'">';
+            echo '<img class="img-responsive" id="thumbnail" src="'.$row["image"].'">';
             echo '<h3>'.$row["name"].'</h3>';
             echo '</div>';
             echo '</a>';
-            echo '</div>';
            }
           }else {
         echo "0 results";
