@@ -1,15 +1,9 @@
-<?php include 'header.php';?>
-<!-- Products -->
-
-
-      <!-- Example DataTables Card-->
-
-      <!-- Breadcrumbs-->
-      <!-- Breadcrumbs-->
-      <!-- Example DataTables Card-->
+<?php include 'header.php';
+require 'database-config.php';
+?>
       <div class="card mb-3">
         <div class="card-header">
-          Quản lí sản phẩm             <a href="#" class="btn btn-success pull-right" data-toggle="modal" id="addlinks"><span class="glyphicon glyphicon-plus"></span>Add</a></div>
+          My Pets<a href="#" class="btn btn-success pull-right" data-toggle="modal" id="addlinks"><span class="glyphicon glyphicon-plus"></span>Add new pet</a></div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="product-table">
@@ -42,6 +36,31 @@
               </tbody>
             </table>
           </div>
+          <?php 
+          $sql = "SELECT * FROM pet";
+
+          $result = mysqli_query($conn, $sql);
+          if (!$result) {
+            die("Can't query date. Error occure".mysqli_error($conn));
+          }
+          if (mysqli_num_rows($result) > 0) {
+// output data of each row
+
+           while($row = mysqli_fetch_assoc($result)) {
+            echo '<div class="col-lg-4 col-md-6 col-sm-9">';
+            echo '<a class="pet-link" href="detail.php?id='.$row["id"].'">';
+            echo '<div class="product-container">';
+            echo '<img class="img-responsive" id="thumbnail" align="center" src="'.$row["image"].'">';
+            echo '<h3>'.$row["name"].'</h3>';
+            echo '</div>';
+            echo '</a>';
+            echo '</div>';
+           }
+          }else {
+        echo "0 results";
+        }
+        mysqli_close($conn);
+        ?> 
         </div>
         <div class="card-footer small text-muted"></div>
         </div>

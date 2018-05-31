@@ -17,11 +17,26 @@ body.sticky-footer {
 
 body.fixed-nav {
   padding-top: 56px; }
-
+h3{
+  text-align: center;
+  color: black;
+}
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem; }
-
+#mascotalg {
+  color: white;
+  text-align: center;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 80px;
+  font-weight: 1000;
+}
+#thumbnail{
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
 .scroll-to-top {
   position: fixed;
   right: 15px;
@@ -212,7 +227,7 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
   background: white; }
   @media (min-width: 992px) {
     .content-wrapper {
-      margin-left: 250px; } }
+      margin-top: 50px; } }
 
 #sidenavToggler i {
   font-weight: 800; }
