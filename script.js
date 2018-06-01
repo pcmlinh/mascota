@@ -100,7 +100,7 @@ $(document).ready(function(){
 
 	//Delete
 	$("#petls").on("click",".delete",function(e){
-		var id = $(this).parents("tr").attr("id");
+		var id = $(this).parents(".info").attr("id");
 		$("#did").val(id);
 
 	$("#delete").modal();
@@ -113,7 +113,7 @@ $(document).ready(function(){
 		console.log(formData);
 		$.ajax({
 			method: "POST",
-			url: "deleteProduct.php",
+			url: "deletePet.php",
 			//dataType: 'json',
 			data: formData,
 		}).done(function(data){
