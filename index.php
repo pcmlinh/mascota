@@ -5,8 +5,12 @@ require 'database-config.php';
         <div class="card-header">
           My Pets<a href="#" class="btn btn-success pull-right" data-toggle="modal" id="addlinks"><span class="glyphicon glyphicon-plus"></span>Add new pet</a></div>
         <div class="card-body" id="petls">
+        <table>
+          <tbody>
+            
+          </tbody>
+        </table>
         </div>
-        <div class="card-footer small text-muted"></div>
         </div>
     </div>
         <!-- Add Products -->
@@ -69,11 +73,11 @@ require 'database-config.php';
                             <div class="form-group">
                                 <input type="hidden" name="id" id="uid">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" name="product_name" id="uname" required>
+                                <input type="text" class="form-control" name="pet_name" id="uname" required>
                             </div>
                             <div class="form-group">
                                 <label for="description">Bio</label>
-                                <textarea class="form-control" name="description" id="udescription"></textarea>                               
+                                <textarea class="form-control" name="bio" id="ubio"></textarea>                               
                             </div>
                             <div class="form-group">
                               <label for="">Image</label>
@@ -86,7 +90,7 @@ require 'database-config.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" id="save-btn" style="width: 20%">Save</button>
-                      s      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </form>

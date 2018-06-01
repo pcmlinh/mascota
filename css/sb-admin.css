@@ -21,6 +21,9 @@ h3{
   text-align: center;
   color: black;
 }
+.bio{
+  text-align: center;
+}
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem; }
