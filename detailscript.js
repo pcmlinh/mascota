@@ -79,8 +79,9 @@ $(document).ready(function(){
 })
 
 	//Delete
-	$("#petls").on("click",".delete",function(e){
-		var id = $(this).parents(".info").attr("id");
+	$("#modal-image").on("click",".delete",function(e){
+		var id = $(this).parents("span").attr("id");
+		$("#image"+id).modal("hide");
 		$("#did").val(id);
 
 	$("#delete").modal();
@@ -93,7 +94,7 @@ $(document).ready(function(){
 		console.log(formData);
 		$.ajax({
 			method: "POST",
-			url: "deletePet.php",
+			url: "deleteDetail.php",
 			//dataType: 'json',
 			data: formData,
 		}).done(function(data){
