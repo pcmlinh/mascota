@@ -24,6 +24,10 @@ h3{
 .bio{
   text-align: center;
 }
+#petimage {
+  height: 200px;
+  width: 200px;
+}
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem; }

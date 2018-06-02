@@ -1,6 +1,6 @@
 console.log('connected');
 $(document).ready(function(){
-	getPets();
+	getDetail();
 	$('#product-table').DataTable({
 		responsive: true,
 		autoWidth: false,
@@ -21,7 +21,7 @@ $(document).ready(function(){
 			contentType: false,
 			data: new FormData(productform),
 		}).done(function(data){
-			getPets();
+			getDetail();
 			$("#add").modal("hide");		
 		}).fail(function(jqXHR, statusText, errorThrown){
 			console.log("Fail:"+ jqXHR.responseText);
@@ -85,7 +85,7 @@ $(document).ready(function(){
 		}).done(function(data){
 				console.log(data);
 				
-				getPets();
+				getDetail();
 			
 			$("#update").modal("hide");
 			
@@ -122,7 +122,7 @@ $(document).ready(function(){
 				//Todo close modal
 
 			//Todo delete input
-				getPets();
+				getDetail();
 				$("#delete").modal("hide");
 			}else{
 
@@ -140,9 +140,9 @@ $(document).ready(function(){
 
 })//End document.ready
 
-function getPets(){
+function getDetail(){
 	$.ajax({
-		url: 'getPets.php',
+		url: 'getDetail.php',
 		method: 'POST',
 		dataType: 'json',
 
@@ -152,18 +152,13 @@ function getPets(){
 		if(data.result){
 			var rows = "";
 			$.each(data.products, function(index, pet){
-				rows +="<div class='info' id='"+pet.id+"'>"
-				rows +="<button class='btn btn-danger delete pull-right'><i class='fa fa-trash' aria-hidden='true'></i></button>";
-				rows +="<button class='btn btn-primary edit pull-right'><i class='fa fa-pencil' aria-hidden='true'></i></button>";
-				rows +="<br><br>";
-				rows +='<a class="pet-link" href="detail.php?id='+pet.id+'">';			
-				rows +='<span><img class="img-responsive" id="thumbnail" src="'+pet.image+'"></span>';	
-				rows +='</a>';
-				rows +='<span><h3 class="name">'+pet.name+'</h3><span>';
-				rows +='<div class="bio">'+pet.bio+'</div>';
+					
+				rows +='<div class=col-sm-3>';		
+				rows +='<img class="img-responsive" id="petimage" src="'+pet.image+'">';	
 				rows +='</div>';
+				
 			})
-			$("#petls").html(rows);
+			$(".row").html(rows);
 		}
 	}).fail(function(jqXHR, statusText, errorThrown){
 		console.log("Fail: "+ jqXHR.responseText);

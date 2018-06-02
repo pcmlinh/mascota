@@ -105,7 +105,7 @@ require 'database-config.php';
                     <div class="modal-content">
                         <div class="modal-header" align="left">
                             
-                            <h4 class="modal-title">Delete Product</h4>
+                            <h4 class="modal-title">Delete Pet</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -113,7 +113,7 @@ require 'database-config.php';
                             <input type="hidden" name="id" id="did">
                                 
                             </div>
-                            Delete this product?
+                            Delete this Pet?
                             
                             
                         </div>

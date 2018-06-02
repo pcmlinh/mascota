@@ -30,7 +30,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">Home</a>
+    <a class="navbar-brand" href="index.php">Home</a>
   </nav>
   <div id="mascotalg">MASCOTA</div>
 <div class="content-wrapper">
