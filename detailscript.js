@@ -33,52 +33,30 @@ $(document).ready(function(){
 
 	//Update
 
-	$("#petls").on("click",".edit",function(e){
+	$("#modal-image").on("click",".edit",function(e){
 		//Đọc thông tin
+
+		var id = $(this).parents("span").attr("id");
+		$("#image"+id).modal("hide");
+		var description = $(this).parents("span").find(".description").text();
 		
-		var id = $(this).parents(".info").attr("id");
-		var name = $(this).parents(".info").find(".name").text();
-		var bio = $(this).parents(".info").find(".bio").text();
-		var image = $(this).parents(".info").find("img").attr("src");
-		
-		console.log(image);
+		console.log(description);
 		console.log(id);
-		console.log(name);
-		console.log(bio);
-		//Hiển thị thông tin lên form cập nhật
-		
-		$("#uimage-preview").attr("src",image);
-		
-		$("#ufileToUpload").change(function(){
-        loadImage(this);
-      });
 		$("#uid").val(id);
-		$("#uname").val(name);
-		$("#ubio").val(bio);
-		
-		function loadImage(input){
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e){
-            $("#uimage-preview").attr("src",e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
-      $("#ufileToUpload").change(function(){
-        loadImage(this);
-      });
+		$("#udescription").val(description);
 
 		$("#update").modal();
+      });
+
 		
-		})// End update
+	// End update
 	//Ẩn modal
 	$("#save-btn").click(function(event){
 		var productform = document.querySelector("#update-product-form");
 		$.ajax({
 			method: "POST",
 			dataType: 'json',
-			url: "updatePet.php",
+			url: "updateDetail.php",
 			//dataType: 'json',
 			processData:false,
 			contentType:false,
@@ -89,6 +67,7 @@ $(document).ready(function(){
 				getDetail();
 			
 			$("#update").modal("hide");
+
 			
 
 
@@ -157,29 +136,38 @@ function getDetail(){
 				rows +='<div class=col-sm-3>';
 				rows +='<a href="#" class="imagemodal" data-toggle="modal" data-target="#image'+pet.id+'" id="'+pet.id+'">';		
 				rows +='<img class="img-responsive" id="petimage" src="'+pet.image+'">';	
-				rows +='</a>';
-				rows +='</div>';
+				rows +='</a><div>';
+				// rows +="<button type='button' class='btn btn-primary edit'><i class='fa fa-pencil' aria-hidden='true'></i></button>";
+		  //       rows +="<button type='button' class='btn btn-danger delete'><i class='fa fa-trash' aria-hidden='true'></i></button>";
+				
+				rows +='</div></div>';
 				
 			})
 			$(".row").html(rows);
 			var modalrows = "";
+
 			$.each(data.products, function(index, pet){
+				modalrows += '<span id="'+pet.id+'">'
 				modalrows += '<div id="image'+pet.id+'" class="modal fade" role="dialog">';
 		        modalrows += '<div class="modal-dialog">';
-		        modalrows += '<form id="image-modal-form" method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>" enctype="multipart/form-data">';
+		        modalrows += '<form id="image-modal-form" method="POST" action="'+my_var+'" enctype="multipart/form-data">';
 		        modalrows += '<div class="modal-content">';
-		        modalrows += '<div class="modal-header">';
+		        modalrows += '<div class="modal-header" id="button-image">';
+		        modalrows +="<button type='button' class='btn btn-primary edit'><i class='fa fa-pencil' aria-hidden='true'></i></button>";
+		  		modalrows +="<button type='button' class='btn btn-danger delete'><i class='fa fa-trash' aria-hidden='true'></i></button>";
+							
 		        modalrows += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
 		        modalrows += '</div>';
 		        modalrows += '<div class="modal-body" id="detail-modal">';
 		        modalrows += '<img class="img-responsive" id="big-image" src="'+pet.image+'">';
-		        modalrows += '<h4>'+pet.description+'</h4>';
+		        modalrows += '<h4 class="description">'+pet.description+'</h4>';
 		        modalrows += '<div>'+pet.date+'</div>';
 		        modalrows += '</div>';
 		        modalrows += '</div>';
 		        modalrows += '</form>';
 		        modalrows += '</div>';
 		        modalrows += '</div>';
+		        modalrows += '</span>';
 		
 			})
 			$("#modal-image").html(modalrows);
